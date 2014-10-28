@@ -1,0 +1,25 @@
+module SegmentDriver( Display, Number);
+
+output[6:0] Display;
+input[3:0] Number;
+reg[6:0] Display;
+
+always
+case( Number )
+
+	0: Display = 7'b1000000;
+	1: Display = 7'b1111001;
+	2: Display = 7'b0100100;
+	3: Display = 7'b0110000;
+	4: Display = 7'b0011001;
+	5: Display = 7'b0010010;
+	6: Display = 7'b0000011;
+	7: Display = 7'b1111000;
+	8: Display = 7'b0000000;
+	9: Display = 7'b0011000;
+	
+	default: Display = 7'b0000110;
+	
+endcase
+
+endmodule

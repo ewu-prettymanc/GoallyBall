@@ -1,0 +1,113 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'VGADriver:VGAD|iclk'
+Slack : -12.952
+TNS   : -986.914
+
+Type  : Slow 1200mV 85C Model Setup 'Keyboard:KBD|newKbClk'
+Slack : -3.112
+TNS   : -121.611
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -1.252
+TNS   : -1.707
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : -0.234
+TNS   : -0.234
+
+Type  : Slow 1200mV 85C Model Hold 'Keyboard:KBD|newKbClk'
+Slack : 0.358
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'VGADriver:VGAD|iclk'
+Slack : 0.359
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -25.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'VGADriver:VGAD|iclk'
+Slack : -1.000
+TNS   : -147.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Keyboard:KBD|newKbClk'
+Slack : -1.000
+TNS   : -47.000
+
+Type  : Slow 1200mV 0C Model Setup 'VGADriver:VGAD|iclk'
+Slack : -11.430
+TNS   : -866.747
+
+Type  : Slow 1200mV 0C Model Setup 'Keyboard:KBD|newKbClk'
+Slack : -2.739
+TNS   : -106.232
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -1.031
+TNS   : -1.186
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : -0.236
+TNS   : -0.236
+
+Type  : Slow 1200mV 0C Model Hold 'VGADriver:VGAD|iclk'
+Slack : 0.312
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Keyboard:KBD|newKbClk'
+Slack : 0.313
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -25.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'VGADriver:VGAD|iclk'
+Slack : -1.000
+TNS   : -147.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Keyboard:KBD|newKbClk'
+Slack : -1.000
+TNS   : -47.000
+
+Type  : Fast 1200mV 0C Model Setup 'VGADriver:VGAD|iclk'
+Slack : -6.907
+TNS   : -500.876
+
+Type  : Fast 1200mV 0C Model Setup 'Keyboard:KBD|newKbClk'
+Slack : -1.305
+TNS   : -45.560
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -0.228
+TNS   : -0.228
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : -0.250
+TNS   : -0.250
+
+Type  : Fast 1200mV 0C Model Hold 'Keyboard:KBD|newKbClk'
+Slack : 0.185
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'VGADriver:VGAD|iclk'
+Slack : 0.186
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -26.219
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'VGADriver:VGAD|iclk'
+Slack : -1.000
+TNS   : -147.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Keyboard:KBD|newKbClk'
+Slack : -1.000
+TNS   : -47.000
+
+------------------------------------------------------------

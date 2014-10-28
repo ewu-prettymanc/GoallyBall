@@ -1,0 +1,215 @@
+
+module MyMain( R, G, B,Vsync, Hsync, kyClk, kyData, clk, led);
+
+output[3:0] R, G, B;
+output Vsync, Hsync;
+input kyClk, kyData, clk;
+output led;
+
+assign led = Display;
+
+VGADriver VGAD(R, G, B, Vsync, Hsync, sysclk, Display);
+Keyboard KBD(Display, kyClk, kyData, clk);
+
+endmodule
+
+
+// Keyboard Module. 
+module Keyboard( Display,kyClk, kyData, clk);
+
+input kyClk, kyData, clk;
+output Display;
+reg Display;
+reg[31:0] cycles;
+reg[7:0] element;
+reg gotStart;
+reg[31:0] count;
+reg newKbClk;
+reg [20:0] countKb;
+
+//internal clock generator
+//cleans up the keyboard clock
+ always@(posedge clk)
+ begin
+	countKb = {countKb[20:0], kyClk}; // shift register.... push on on one falls off
+	if(countKb == 4'hffff)
+	begin
+		newKbClk = 1;
+	end
+	else
+	if(countKb == 4'h0000)
+		newKbClk = 0;
+	else
+		newKbClk = newKbClk;
+
+ end//end clock generator
+
+
+
+always@(negedge newKbClk)
+begin
+	
+	if( (kyData == 0) )
+	begin 
+		 gotStart = 1;
+	end
+	
+   if ( (gotStart == 1) && (cycles < 9) && (cycles > 0))
+	begin
+		//recData[element] = kyData;
+		
+		// This fills each 7 segment display 4 at a time
+		if( element < 4 )
+		begin
+			//segreg0[element] = recData[element];
+		end
+		else
+		//	segreg1[element -4] = recData[element];
+			
+		element = element +1;
+	end
+	
+	
+	
+	if(cycles >= 10 )
+	begin		
+		cycles = 0;
+		gotStart = 0;
+		element = 0;
+		
+		// Set to display a color here. 
+		Display = ~Display;
+		end
+	else
+		cycles = cycles + 1;
+end
+endmodule
+
+module VGADriver(R, G, B, Vsync, Hsync, sysclk, Display);
+
+input sysclk;
+input Display;
+output[3:0] R, G, B;
+reg[3:0] R, G, B;
+output Vsync, Hsync;
+reg Vsync, Hsync;
+reg iclk;
+reg[31:0] Vcount;
+reg[31:0] Hcount;
+reg aclk;
+reg[31:0] count;
+
+// This will be my animation stuff.
+reg[31:0]  dx = 1;
+reg[31:0]  dy = 1;
+reg[31:0] X_top = 0;
+reg[31:0] Y_top = 0;
+reg[31:0] X_width = 60;
+reg[31:0] Y_width = 60;
+reg[31:0] X_inc;
+reg[31:0] Y_inc;
+
+
+always@(posedge sysclk)
+begin
+	iclk = ~iclk;
+end
+
+always@(posedge sysclk)
+begin
+	
+	if( count > 20000 )
+	begin
+		aclk = ~aclk;
+	end
+	else
+		count = count +1;
+	
+end
+
+always@(posedge iclk )
+begin
+	
+	// Toggle our colors
+	if( Vcount < 480 && Hcount < 640 && Display == 1 )
+		begin
+		
+			// Check for X out of bounds
+		/*	if( ((X_top + X_width) > 639 ) || (X_top < 0))
+			begin
+				dx = dx * -1;
+			end
+			// Check for Y out of bounds
+			if( ((Y_top + Y_width) > 439 ) || (Y_top < 0))
+			begin
+				dy = dy * -1;
+			end
+			
+			// Only increment after we drew the whole picture.
+			if( X_inc >= X_width)
+				X_top = X_top + dx;
+			else	
+				X_inc = X_inc + 1;
+				
+			if( Y_inc >= Y_width)
+				Y_top = Y_top + dx;
+			else
+				Y_inc = Y_inc + 1;*/
+			
+		if( (Vcount > Y_top && Vcount < (Y_width + Y_top)) && (Hcount > X_top && Hcount < (X_width + X_top)) )
+				begin
+						R <= 4'b0000;
+						G <= 4'b1111;
+						B <= 4'b0000;
+				end
+		else
+				begin
+						R <= 4'b0000;
+						G <= 4'b0000;
+						B <= 4'b1111;
+				end
+	end	
+	else
+		begin
+			R <= 4'b0000;
+			G <= 4'b0000;
+			B <= 4'b0000;
+		end
+		
+	// End Horiz. Front Porch
+	if( Hcount > 655 && Hcount < 752 )
+	begin
+		 Hsync = 0;
+	end
+	else
+		Hsync = 1;
+	
+	// End Horiz. Back porch
+	if( Hcount >= 800 )
+	begin
+		Hcount = 0;
+		Vcount = Vcount + 1;
+	end
+	
+	//End vertical Front Porch
+	if( Vcount > 490 && Vcount < 492)
+	begin
+		 Vsync = 0;
+	end
+	else // End vertical Front Porch
+		Vsync = 1;
+	
+	//End vertical Back porch
+	if( Vcount >= 525)
+	begin
+		Vcount = 0;
+	end
+	
+	Hcount = Hcount + 1;
+end
+endmodule
+
+
+
+
+

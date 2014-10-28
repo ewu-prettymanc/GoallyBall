@@ -1,0 +1,88 @@
+|MyMain
+R[0] <= VGADriver:VGAD.port0
+R[1] <= VGADriver:VGAD.port0
+R[2] <= VGADriver:VGAD.port0
+R[3] <= VGADriver:VGAD.port0
+G[0] <= VGADriver:VGAD.port1
+G[1] <= VGADriver:VGAD.port1
+G[2] <= VGADriver:VGAD.port1
+G[3] <= VGADriver:VGAD.port1
+B[0] <= VGADriver:VGAD.port2
+B[1] <= VGADriver:VGAD.port2
+B[2] <= VGADriver:VGAD.port2
+B[3] <= VGADriver:VGAD.port2
+Vsync <= VGADriver:VGAD.port3
+Hsync <= VGADriver:VGAD.port4
+kyClk => kyClk.IN1
+kyData => kyData.IN1
+clk => clk.IN2
+led <= Display.DB_MAX_OUTPUT_PORT_TYPE
+kd <= KeyData.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyMain|Keyboard:KBD
+Display <= Display~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[0] <= keydata[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[1] <= keydata[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[2] <= keydata[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[3] <= keydata[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[4] <= keydata[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[5] <= keydata[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[6] <= keydata[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+keydata[7] <= keydata[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+kyClk => countKb[0].DATAIN
+kyClk => Equal0.IN3
+kyClk => Equal1.IN20
+kyData => inputbuffer.DATAB
+kyData => inputbuffer.DATAB
+kyData => inputbuffer.DATAB
+kyData => inputbuffer.DATAB
+kyData => inputbuffer.DATAB
+kyData => inputbuffer.DATAB
+kyData => inputbuffer.DATAB
+kyData => inputbuffer.DATAB
+kyData => gotStart.OUTPUTSELECT
+clk => newKbClk.CLK
+clk => countKb[0].CLK
+clk => countKb[1].CLK
+clk => countKb[2].CLK
+clk => countKb[3].CLK
+clk => countKb[4].CLK
+clk => countKb[5].CLK
+clk => countKb[6].CLK
+clk => countKb[7].CLK
+clk => countKb[8].CLK
+clk => countKb[9].CLK
+clk => countKb[10].CLK
+clk => countKb[11].CLK
+clk => countKb[12].CLK
+clk => countKb[13].CLK
+clk => countKb[14].CLK
+clk => countKb[15].CLK
+clk => countKb[16].CLK
+clk => countKb[17].CLK
+clk => countKb[18].CLK
+clk => countKb[19].CLK
+
+
+|MyMain|VGADriver:VGAD
+R[0] <= R[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+R[1] <= R[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+R[2] <= R[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+R[3] <= R[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+G[0] <= G[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+G[1] <= G[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+G[2] <= G[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+G[3] <= G[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+B[0] <= B[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+B[1] <= B[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+B[2] <= B[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+B[3] <= B[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Vsync <= Vsync~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Hsync <= Hsync~reg0.DB_MAX_OUTPUT_PORT_TYPE
+sysclk => iclk.CLK
+Display => R.DATAA
+Display => R.DATAA
+KeyData => ~NO_FANOUT~
+
+
